@@ -33,15 +33,15 @@ pipeline {
             }
         }
         
-        stage('Deploy') {
-            steps {
-                script {
-                    // Deploy your application using another Docker container
-                    docker.image('nginx:latest').inside {
-                        sh 'docker run -d -p 80:80 my-app-image'
-                    }
-                }
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             // Deploy your application using another Docker container
+        //             docker.image('nginx:latest').inside {
+        //                 sh 'docker run -d -p 80:80 my-app-image'
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
