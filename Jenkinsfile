@@ -13,8 +13,11 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    def container = docker.image("abdulrehman100/maven-with-info").run("--rm")
-                    container.followOutput()
+                    def runOptions = "--rm -i -t"
+                    def containerId = docker.run(runOptions, "abdulrehman100/maven-with-info")
+                    // def container = docker.image("abdulrehman100/maven-with-info").run("--rm")
+                    def logs = docker.logs(stdout: true, container: containerId)
+                    echo logs
                 }
             }
         }
