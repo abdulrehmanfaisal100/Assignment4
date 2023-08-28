@@ -77,13 +77,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up by stopping and removing the container
-            cleanWs()
-            docker.image('node:14').stop()
-            // docker.image('node:14').remove()
-        }
-    }
 }
