@@ -50,12 +50,18 @@ pipeline {
 
     stages {
         stage('Pull Docker Image') {
-            steps {
-                script {
-                    // Pull the Docker image from DockerHub
-                    docker.image('node:14').pull()
-                }
+            agent {
+                docker { image 'node:14'}
             }
+            steps {
+                sh 'node -v'
+            }
+            // steps {
+            //     script {
+            //         // Pull the Docker image from DockerHub
+            //         docker.image('node:14').pull()
+            //     }
+            // }
         }
 
         stage('Run Container') {
