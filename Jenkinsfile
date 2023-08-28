@@ -1,41 +1,41 @@
-// pipeline{
-//     agent any
-//     stages {
-//         stage("build") {
-//             steps {
-//                 echo 'build the app'
-//             }
-//         }
+pipeline{
+    agent any
+    stages {
+        stage("build") {
+            steps {
+                echo 'build the app'
+            }
+        }
     
 
 
-//         stage("test") {
-//             steps {
-//                 echo 'test the app'
-//             }
-//         }
-
-//     }
-// }
-
-pipeline {
-    agent any
-    stages {
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3-alpine' }
-            }
+        stage("test") {
             steps {
-                sh 'mvn --version'
+                echo 'test the app'
             }
         }
-        stage('Front-end') {
-            agent {
-                docker { image 'node:7-alpine' }
-            }
-            steps {
-                sh 'node --version'
-            }
-        }
+
     }
 }
+
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Back-end') {
+//             agent {
+//                 docker { image 'maven:3-alpine' }
+//             }
+//             steps {
+//                 sh 'mvn --version'
+//             }
+//         }
+//         stage('Front-end') {
+//             agent {
+//                 docker { image 'node:7-alpine' }
+//             }
+//             steps {
+//                 sh 'node --version'
+//             }
+//         }
+//     }
+// }
