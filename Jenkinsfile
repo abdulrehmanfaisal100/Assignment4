@@ -10,20 +10,20 @@ pipeline {
                 sh 'node -v'
             }
         }
-        // stage('Run Container') {
-        //     steps {
-        //         script {
-        //             docker.image("${IMAGE_NAME}:${env.BUILD_NUMBER}").run("--rm")
-        //         }
-        //     }
-        // }
         stage('Run Container') {
-            agent {
-                docker { image 'abdulrehman100/maven-with-info'}
-            }
             steps {
-                echo "bruh"
+                script {
+                    docker.image("abdulrehman100/maven-with-info").run()
+                }
             }
         }
+        // stage('Run Container') {
+        //     agent {
+        //         docker { image 'abdulrehman100/maven-with-info'}
+        //     }
+        //     steps {
+        //         echo "bruh"
+        //     }
+        // }
     }
 }
