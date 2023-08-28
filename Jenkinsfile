@@ -13,10 +13,10 @@ pipeline {
 
         stage('Run Container') {
             agent {
-                docker { image 'maven:3.9.3-eclipse-temurin-17-alpine'}
+                docker { image 'abdulrehman100/maven-with-info'}
             }
             steps {
-                sh 'mvn --version'
+                sh 'mvn -version'
             }
         }
     }
