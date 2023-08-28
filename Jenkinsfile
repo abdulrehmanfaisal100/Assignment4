@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Run a Docker container from the pulled image
-                    def container = docker.image('node:14').run('-p 8080:3000')
+                    def container = docker.image('node:14').run('-p 3000:3000')
                     // Get the container ID
                     def containerId = container.id
                     echo "Docker container ID: ${containerId}"
