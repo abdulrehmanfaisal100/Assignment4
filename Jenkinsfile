@@ -17,13 +17,13 @@ pipeline {
                 }
             }
         }
-        stage('Run Container check') {
-            agent {
-                docker { image 'abdulrehman100/maven-with-info'}
-            }
-            steps {
-                sh 'mvn -version'
-            }
-        }
+        // stage('Run Container check') {
+        //     agent {
+        //         docker { image 'abdulrehman100/maven-with-info'}
+        //     }
+        //     steps {
+        //         sh 'mvn -version'
+        //     }
+        // }
     }
 }
