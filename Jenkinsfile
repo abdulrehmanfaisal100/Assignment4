@@ -13,7 +13,8 @@ pipeline {
         stage('Run Container') {
             steps {
                 script {
-                    docker.image("abdulrehman100/maven-with-info").run("--rm")
+                    def container = docker.image("abdulrehman100/maven-with-info").run("--rm")
+                    container.followOutput()
                 }
             }
         }
