@@ -19,39 +19,28 @@
 // }
 
 pipeline {
-    agent {
-        docker {
-            image 'ubuntu:latest'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
 
     stages {
-        stage('Check docker') {
-            steps {
-                sh 'docker --version'
-            }
-        }
-        stage('Build') {
+        stage('Pull Docker Image') {
             steps {
                 script {
-                    // Build and test your application in a Docker container
-                    docker.image('maven:3-alpine').inside {
-                        sh 'mvn clean package'
-                    }
+                    // Pull the Docker image from DockerHub
+                    docker.image('node:14').pull()
                 }
             }
         }
-        
-        // stage('Deploy') {
-        //     steps {
-        //         script {
-        //             // Deploy your application using another Docker container
-        //             docker.image('nginx:latest').inside {
-        //                 sh 'docker run -d -p 80:80 my-app-image'
-        //             }
-        //         }
-        //     }
-        // }
+
+        stage('Run Container') {
+            steps {
+                script {
+                    // Run a Docker container from the pulled image
+                    def container = docker.image('node:14').run('-p 8080:3000')
+                    // Get the container ID
+                    def containerId = container.id
+                    echo "Docker container ID: ${containerId}"
+                }
+            }
+        }
     }
 }
