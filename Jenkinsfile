@@ -68,8 +68,8 @@ pipeline {
 
                     // Execute a command inside the container to display information
                     docker.image('node:14').inside(containerId) {
-                        sh 'echo "Node.js version: $(node -v)"'
-                        sh 'echo "Your Name: YourName"'
+                        // sh 'echo "Node.js version: $(node -v)"'
+                        // sh 'echo "Your Name: YourName"'
                     }
 
                     echo "Docker container ID: ${containerId}"
