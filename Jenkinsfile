@@ -22,6 +22,7 @@ pipeline {
                 docker { image 'abdulrehman100/maven-with-info'}
             }
             steps {
+                echo "bruh"
             }
         }
     }
