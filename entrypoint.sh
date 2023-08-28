@@ -3,4 +3,4 @@
 echo "Maven version:"
 mvn -version
 
-echo "Your name: $MY_NAME"
+echo "Your name: Abdul Rehman Faisal"

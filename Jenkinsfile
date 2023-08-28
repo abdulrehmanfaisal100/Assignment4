@@ -22,7 +22,6 @@ pipeline {
                 docker { image 'abdulrehman100/maven-with-info'}
             }
             steps {
-                sh 'mvn -version'
             }
         }
     }
