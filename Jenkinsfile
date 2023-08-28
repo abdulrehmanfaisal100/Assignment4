@@ -59,21 +59,27 @@ pipeline {
         }
 
         stage('Run Container') {
+            // steps {
+            //     script {
+            //         // Run a Docker container from the pulled image
+            //         def container = docker.image('node:14').run('-p 3000:3000')
+            //         // Get the container ID
+            //         def containerId = container.id
+            //         sh 'docker exec '
+            //         // Execute a command inside the container to display information
+            //         docker.image('node:14').inside(containerId) {
+            //             // sh 'echo "Node.js version: $(node -v)"'
+            //             // sh 'echo "Your Name: YourName"'
+            //         }
+
+            //         echo "Docker container ID: ${containerId}"
+            //     }
+            // }
+            agent {
+                docker { image 'maven:3.9.3-eclipse-temurin-17-alpine'}
+            }
             steps {
-                script {
-                    // Run a Docker container from the pulled image
-                    def container = docker.image('node:14').run('-p 3000:3000')
-                    // Get the container ID
-                    def containerId = container.id
-
-                    // Execute a command inside the container to display information
-                    docker.inside(containerId) {
-                        // sh 'echo "Node.js version: $(node -v)"'
-                        // sh 'echo "Your Name: YourName"'
-                    }
-
-                    echo "Docker container ID: ${containerId}"
-                }
+                sh 'mvn --version'
             }
         }
     }
