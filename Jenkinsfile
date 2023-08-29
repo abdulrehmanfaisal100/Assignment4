@@ -6,7 +6,6 @@ pipeline {
             steps {
                 script {
                     def imageName = "abdulrehman100/node-with-info"
-                    // def containerId = sh(script: "docker run ${imageName}", returnStatus: true)
                     def container = docker.image(imageName).run("-d")
                     def containerId = container.id
                     echo "Container ID: ${containerId}"
@@ -15,20 +14,11 @@ pipeline {
                 }
             }
         }
-        // stage('Run Container') {
-        //     steps {
-        //         script {
-        //             docker.image("abdulrehman100/maven-with-info").run("--rm")
-                    
-        //         }
-        //     }
-        // }
 
         stage('Run Maven Container') {
             steps {
                 script {
                     def imageName = "abdulrehman100/maven-with-info"
-                    // def containerId = sh(script: "docker run ${imageName}", returnStatus: true)
                     def container = docker.image(imageName).run("-d")
                     def containerId = container.id
                     echo "Container ID: ${containerId}"
