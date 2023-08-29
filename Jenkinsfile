@@ -34,6 +34,8 @@ pipeline {
                     def container = docker.image(imageName).run("-d")
                     def containerId = container.id
                     echo "Container ID: ${containerId}"
+                    def logs = docker.container(containerId).log(stdout: true, stderr: true)
+                    echo "Container Logs:\n${logs}"
                 }
             }
         }
