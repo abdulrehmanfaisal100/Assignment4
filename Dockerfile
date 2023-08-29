@@ -7,7 +7,7 @@ ENV MY_NAME="Abdul Rehman Faisal"
 COPY entrypoint.sh /entrypoint.sh
 
 # Make the entrypoint script executable
-RUN chmod +x /entrypoint.sh
+RUN chmod 777 /entrypoint.sh
 
 # Set the entrypoint to the script
 ENTRYPOINT ["/entrypoint.sh"]
