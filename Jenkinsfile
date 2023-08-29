@@ -2,12 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Pull Docker Image') {
-            agent {
-                docker { image 'node:14'}
-            }
+        stage('Run Node Container') {
             steps {
-                sh 'node -v'
+                script {
+                    def imageName = "abdulrehman100/node-with-info"
+                    // def containerId = sh(script: "docker run ${imageName}", returnStatus: true)
+                    def container = docker.image(imageName).run("-d")
+                    def containerId = container.id
+                    echo "Container ID: ${containerId}"
+                    def logs = sh(script: "docker logs ${containerId}", returnStdout: true).trim()
+                    echo "Container Logs:\n${logs}"
+                }
             }
         }
         // stage('Run Container') {
@@ -18,15 +23,8 @@ pipeline {
         //         }
         //     }
         // }
-        stage('Run Container') {
-            agent {
-                docker { image 'abdulrehman100/maven-with-info'}
-            }
-            steps {
-                echo "my name"
-            }
-        }
-        stage('Run Container2') {
+
+        stage('Run Maven Container') {
             steps {
                 script {
                     def imageName = "abdulrehman100/maven-with-info"
