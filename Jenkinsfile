@@ -23,7 +23,16 @@ pipeline {
                 docker { image 'abdulrehman100/maven-with-info'}
             }
             steps {
-                sh './entrypoint.sh'
+                echo "my name"
+            }
+        }
+        stage('Run Container2') {
+            steps {
+                script {
+                    def imageName = "abdulrehman100/maven-with-info"
+                    def containerId = sh(script: "docker run -d --rm ${imageName}", returnStatus: true)
+                    echo "Container ID: ${containerId}"
+                }
             }
         }
     }
