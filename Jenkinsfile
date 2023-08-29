@@ -23,7 +23,6 @@ pipeline {
                 docker { image 'abdulrehman100/maven-with-info'}
             }
             steps {
-                sh 'chmod +x /entrypoint.sh'
                 sh './entrypoint.sh'
             }
         }
