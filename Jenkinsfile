@@ -30,7 +30,8 @@ pipeline {
             steps {
                 script {
                     def imageName = "abdulrehman100/maven-with-info"
-                    def containerId = sh(script: "docker run ${imageName}", returnStatus: true)
+                    // def containerId = sh(script: "docker run ${imageName}", returnStatus: true)
+                    def containerId = docker.image(imageName).run("-d")
                     echo "Container ID: ${containerId}"
                 }
             }
